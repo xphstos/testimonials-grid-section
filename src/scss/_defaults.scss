@@ -1,0 +1,53 @@
+// Project Defaults
+* {
+	box-sizing: border-box;
+
+	&:before,
+	&:after {
+		box-sizing: border-box;
+	}
+}
+
+html {
+	font-size: 13px;
+	height: 100%;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 72px 0;
+	font: 400 1rem / 1.5 "Barlow Semi Condensed", sans-serif;
+	display: grid;
+	place-content: center;
+	color: var(--grey-light);
+	background-color: var(--blue-greyish-light);
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		margin: 0;
+	}
+}
+
+p {
+	margin: 0;
+}
+
+// Attribution Defaults
+.attribution {
+	font-size: 12px;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	width: calc(100vw - 50px);
+	transform: translateX(-50%);
+	padding: 0.5rem 0;
+	color: var(--blue-blackish-dark);
+	opacity: 0.5;
+
+	a {
+		color: inherit;
+	}
+}

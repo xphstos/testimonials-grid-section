@@ -1,0 +1,20 @@
+@use "sass:map" as *;
+@use "./variables" as *;
+
+// Get CSS Var
+@function v($name, $fallback: null) {
+	@if ($fallback) {
+		@return var(--#{$name}, #{$fallback});
+	} @else {
+		@return var(--#{$name});
+	}
+}
+
+// Get SCSS Color Var
+@function c($name) {
+	@if has-key($colors, $name) {
+		@return get($colors, $name);
+	}
+
+	@return null;
+}

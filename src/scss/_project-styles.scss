@@ -1,0 +1,132 @@
+@use "./mixins" as *;
+@use "sass:color" as *;
+
+.testimonials {
+	padding: 0 Max(24px, (50vw - 1100px / 2));
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-areas: "clifford clifford walters whittle" "harmon abrams abrams whittle";
+	gap: 24px;
+	position: relative;
+	z-index: 1;
+
+	@media screen and (max-width: 1100px) {
+		padding: 0 Max(24px, (50vw - 425px / 2));
+		grid-template-columns: 1fr;
+		grid-template-areas: unset;
+
+		> * {
+			grid-area: unset !important;
+		}
+	}
+}
+
+.testimonial {
+	padding: 24px 32px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 16px 24px 24px -12px scale(c("blue-blackish-dark"), $alpha: -80%);
+
+	> * {
+		+ * {
+			margin: 16px 0 0 0;
+		}
+	}
+
+	&--clifford {
+		--border-color: #{scale(c("violet"), $lightness: 30%)};
+		background-color: v("violet");
+		grid-area: clifford;
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			color: v("border-color");
+			z-index: 1;
+			background: no-repeat url("../images/bg-pattern-quotation.svg") 100% /
+				100%;
+			width: 112px;
+			height: 112px;
+			right: 15%;
+			top: 0;
+		}
+
+		@media screen and (max-width: 1100px) {
+			&:before {
+				right: 8%;
+			}
+		}
+
+		> * {
+			contain: layout;
+			z-index: 2;
+		}
+	}
+
+	&--walters {
+		--border-color: #{scale(c("blue-greyish-dark"), $lightness: 50%)};
+		background-color: v("blue-greyish-dark");
+		color: v("grey-light");
+		grid-area: walters;
+	}
+
+	&--harmon {
+		--border-color: #{scale(c("white"), $lightness: -50%)};
+		background-color: v("white");
+		color: v("blue-greyish-dark");
+		grid-area: harmon;
+	}
+
+	&--abrams {
+		--border-color: #{scale(c("blue-blackish-dark"), $lightness: 40%)};
+		background-color: v("blue-blackish-dark");
+		color: v("grey-light");
+		grid-area: abrams;
+	}
+
+	&--whittle {
+		--border-color: #{scale(c("white"), $lightness: -50%)};
+		background-color: v("white");
+		color: v("blue-greyish-dark");
+		grid-area: whittle;
+	}
+
+	&__short-quote {
+		font-size: 20px;
+		margin-bottom: 16px;
+	}
+
+	&__quote {
+		opacity: 0.75;
+		margin-top: auto;
+	}
+}
+
+.author {
+	display: grid;
+	align-items: center;
+	grid-template-columns: 32px 1fr;
+	grid-template-areas: "i name" "i title";
+	gap: 0 16px;
+
+	&__image {
+		grid-area: i;
+		width: 32px;
+		height: 32px;
+		border-radius: 16rem;
+		border: 2px solid v("border-color");
+		vertical-align: middle;
+	}
+
+	&__name {
+		grid-area: name;
+		font-weight: bold;
+	}
+
+	&__title {
+		grid-area: title;
+		opacity: 0.5;
+	}
+}
